@@ -44,10 +44,9 @@ public class Main {
 //                    + " - data de nascimento: " + a.getData_nascimento());
 //        }
 
-        Livro livro = new Livro("Jurassic Park", "Michael Crichton", 1990, 50);
+        Livro livro = new Livro("Jurassic Park", "Michael Crichton", 1990, 20, 3);
         LivroDAO daoLivro = new LivroDAO();
-
-        daoLivro.create(livro);
+        daoLivro.update(livro);
 
         List<Livro> livros = daoLivro.read();
         for(Livro l : livros){

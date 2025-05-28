@@ -59,7 +59,7 @@ public class LivroDAO {
 
     //UPDATE
     public void update(Livro livro){
-        String sql = "UPDATE Alunos SET titulo = ?, autor = ?, ano_publicacao = ?, quantidate_estoque = ? WHERE id_livro = ?";
+        String sql = "UPDATE Livros SET titulo = ?, autor = ?, ano_publicacao = ?, quantidade_estoque = ? WHERE id_livro = ?";
 
         try(Connection connection = dataBaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
