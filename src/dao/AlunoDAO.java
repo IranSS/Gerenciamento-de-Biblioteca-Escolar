@@ -37,7 +37,7 @@ public class AlunoDAO {
         List<Aluno> alunos = new ArrayList<>();
         String sql = "SELECT * FROM alunos";
 
-        try(Connection connection = dataBaseConnection.getConnection();
+        try (Connection connection = dataBaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql)){
 
@@ -57,6 +57,32 @@ public class AlunoDAO {
     }
 
     //UPDATE
+    public void update(Aluno aluno){
+        String sql = "UPDATE Alunos SET nome_aluno = ?, matricula = ?, data_nascimento = ? WHERE id_aluno = ?";
+
+        try(Connection connection = DataBaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, aluno.getNome());
+            preparedStatement.setString(2, aluno.getMatricula());
+            preparedStatement.setDate(3, aluno.getData_nascimento());
+            preparedStatement.setInt(4, aluno.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException error){
+            error.printStackTrace();
+        }
+    }
 
     //DELETE
+    public void delete(int id){
+        String sql = "DELETE FROM alunos where id_aluno = ?";
+
+        try(Connection connection = dataBaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException error){
+            error.printStackTrace();
+        }
+    }
 }

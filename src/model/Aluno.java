@@ -10,6 +10,13 @@ public class Aluno {
 
     public Aluno(){}
 
+    public Aluno(String nome, String matricula, Date dataNascimento, int id) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.data_nascimento = dataNascimento;
+        this.id = id;
+    }
+
     public Aluno(String nome, String matricula, Date dataNascimento) {
         this.nome = nome;
         this.matricula = matricula;
@@ -47,4 +54,5 @@ public class Aluno {
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = this.data_nascimento;
     }
+
 }
