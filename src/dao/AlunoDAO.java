@@ -49,7 +49,6 @@ public class AlunoDAO {
                 );
                 alunos.add(aluno);
             }
-
         } catch (SQLException error){
             error.printStackTrace();
         }
@@ -60,7 +59,7 @@ public class AlunoDAO {
     public void update(Aluno aluno){
         String sql = "UPDATE Alunos SET nome_aluno = ?, matricula = ?, data_nascimento = ? WHERE id_aluno = ?";
 
-        try(Connection connection = DataBaseConnection.getConnection();
+        try(Connection connection = dataBaseConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, aluno.getNome());
             preparedStatement.setString(2, aluno.getMatricula());
@@ -68,6 +67,7 @@ public class AlunoDAO {
             preparedStatement.setInt(4, aluno.getId());
             preparedStatement.executeUpdate();
 
+            System.out.println("Aluno atualizado com sucesso!");
         } catch (SQLException error){
             error.printStackTrace();
         }
@@ -81,6 +81,8 @@ public class AlunoDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+
+            System.out.println("Aluno deletado com sucesso!");
         } catch (SQLException error){
             error.printStackTrace();
         }
