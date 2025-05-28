@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 public class Livro {
     private int id;
     private String titulo;
@@ -7,7 +9,7 @@ public class Livro {
     private int ano_publicacao;
     private int quantidade_estoque;
 
-    public Livro(){}
+    public Livro(int idAluno, int idLivro, Date dataEmprestimo, Date quantidadeEstoque){}
 
     public Livro(String titulo, String autor, int ano_publicacao, int quantidade_estoque){
         this.titulo = titulo;
