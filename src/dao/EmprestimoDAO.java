@@ -27,6 +27,15 @@ public class EmprestimoDAO {
             preparedStatement.executeUpdate();
 
             System.out.println("Emprestimo realizado com sucesso!");
+
+            //Diminuir no estoque de livros a quantidade;
+            LivroDAO daoLivros = new LivroDAO();
+            Livro livro = daoLivros.pegarUmLivro(emprestimo.getId_livro());
+            int quantidadeAtual = livro.getQuantidade_estoque();
+            quantidadeAtual -= 1;
+            livro.setQuantidade_estoque(quantidadeAtual);
+            daoLivros.atualizarQuantidade(livro);
+
         } catch (SQLException error){
             error.printStackTrace();
         }
@@ -58,7 +67,7 @@ public class EmprestimoDAO {
 
     //UPDATE
     public void atualizarRegistroEmprestimo(Emprestimo emprestimo){
-        String sql = "UPDATE emprestimos SET id_aluno = ?, id_livro = ?, data_devolucao = ? WHERE id_emprestimo = ?";
+        String sql = "UPDATE emprestimos SET id_aluno = ?, id_livro = ?, data_devolucao = ? WHERE id_emprestimos = ?";
 
         try(Connection connection = dataBaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)){

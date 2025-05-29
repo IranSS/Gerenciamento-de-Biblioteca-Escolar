@@ -26,7 +26,7 @@ public class AlunoDAO {
             preparedStatement.setDate(3, aluno.getData_nascimento());
             preparedStatement.executeUpdate();
 
-            System.out.println("Aluno inserido com sucesso");
+            System.out.println("Aluno cadastrado com sucesso");
         } catch (SQLException error){
             error.printStackTrace();
         }

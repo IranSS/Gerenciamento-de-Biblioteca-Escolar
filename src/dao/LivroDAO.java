@@ -56,7 +56,30 @@ public class LivroDAO {
         }
         return livros;
     }
+    //READ somente 1
+    public Livro pegarUmLivro(int id){
+        Livro livro = null;
+        String sql = "SELECT * FROM Livros where id_livro = ?";
 
+        try(Connection connection = dataBaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                livro = new Livro(
+                        resultSet.getString("titulo"),
+                        resultSet.getString("autor"),
+                        resultSet.getInt("ano_publicacao"),
+                        resultSet.getInt("quantidade_estoque")
+                );
+            }
+        } catch (SQLException error){
+            error.printStackTrace();
+        }
+        return livro;
+    }
     //UPDATE
     public void update(Livro livro){
         String sql = "UPDATE Livros SET titulo = ?, autor = ?, ano_publicacao = ?, quantidade_estoque = ? WHERE id_livro = ?";
@@ -68,6 +91,21 @@ public class LivroDAO {
             preparedStatement.setInt(3, livro.getAno_publicacao());
             preparedStatement.setInt(4, livro.getQuantidade_estoque());
             preparedStatement.setInt(5, livro.getId());
+            preparedStatement.executeUpdate();
+
+            System.out.println("Livro atualizado com sucesso!");
+        } catch (SQLException error){
+            error.printStackTrace();
+        }
+    }
+    public void atualizarQuantidade(Livro livro){
+        String sql = "UPDATE Livros SET quantidade_estoque = ? WHERE id_livro = ?";
+
+        try(Connection connection = dataBaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            //diminui uma quantidade de livro quando for retirado;
+            preparedStatement.setInt(1, livro.getQuantidade_estoque());
+            preparedStatement.setInt(2, livro.getId());
             preparedStatement.executeUpdate();
 
             System.out.println("Livro atualizado com sucesso!");
