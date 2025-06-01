@@ -109,7 +109,7 @@ public class LivroDAO {
             preparedStatement.setInt(2, livro.getId());
             preparedStatement.executeUpdate();
 
-            System.out.println("Livro atualizado com sucesso!");
+            System.out.println("Livro atualizado com sucesso! ");
         } catch (SQLException error){
             error.printStackTrace();
         }

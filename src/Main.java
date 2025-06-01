@@ -23,7 +23,7 @@ public class Main {
             System.out.println("1-Alunos | 2-Livros | " +
                     "3-Emprestimos | 4-Sair");
             int resposta = scanner.nextInt();
-
+            //Menu
             if(resposta == 1){
                 resposta = 0;
                 System.out.println("1-Cadastrar | 2-Listar Alunos + informações | 3-Atualizar | 4-Deletar ");
@@ -31,16 +31,17 @@ public class Main {
                 scanner.nextLine();
 
                 AlunoDAO alunoDAO = new AlunoDAO();
+                //Aluno
                 switch (escolha){
                     case 1:
-                        //Criar
+                        //Create aluno
                         System.out.println("---Iniciando cadastro---");
                         Aluno aluno = formularioAluno();
                         alunoDAO.create(aluno);
                         mensagemFinalizacao();
                         break;
                     case 2:
-                        //Listar
+                        //Read aluno
                         System.out.println("---Listando todos os alunos---");
                         List<Aluno> alunos = alunoDAO.read();
                         for(Aluno a : alunos){
@@ -52,7 +53,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 3:
-                        //atualizar
+                        //atualizar aluno
                         System.out.println("---Iniciando Atualização do aluno---");
 
                         System.out.println("Digite o id do aluno que você quer atualizar as informações: ");
@@ -65,7 +66,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 4:
-                        //Deletar
+                        //Deletar aluno
                         System.out.println("---Adicione o id do usuário que você quer deletar---");
                         System.out.print("id: " );
                         int id = scanner.nextInt();
@@ -75,8 +76,8 @@ public class Main {
                     default:
                         break;
                 }
+                //Livros
             } else if(resposta == 2){
-                //Faz mais sentido autuaizar somente o estoque, porém foi implementado o Update de todos os elementos
                 System.out.println("1-Adicionar livro | 2-Listar livros + informações " +
                         "| 3-Atualizar Estoque | 4-Deletar Livro");
                 int escolha = scanner.nextInt();
@@ -86,6 +87,7 @@ public class Main {
                 Livro livro = null;
                 switch (escolha){
                     case 1:
+                        //create livros
                         System.out.println("---Adionando novo livro---");
                         System.out.print("Título: ");
                         String titulo = scanner.nextLine();
@@ -101,7 +103,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 2:
-                        //Listar
+                        //read livros
                         System.out.println("---Listando todos os livros---");
                         List<Livro> livros = livroDAO.read();
                         for(Livro l : livros){
@@ -112,6 +114,8 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 3:
+                        //update livros
+                        //Faz mais sentido atualizar somente o estoque, porém foi implementado o Update de todos os elementos
                         System.out.println("---Digite o ID do item para atualizar o estoque---");
                         System.out.print("ID: ");
                         int id_item = scanner.nextInt();
@@ -126,6 +130,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 4:
+                        //deletar livros
                         System.out.println("---Adicione o ID do livro que você quer deletar---");
                         System.out.print("id: " );
                         int id = scanner.nextInt();
@@ -135,8 +140,8 @@ public class Main {
                     default:
                         break;
                 }
-
             } else if( resposta == 3){
+                //Emprestimos
                 System.out.println("1-Criar emprestimo | 2-Relatorio de todos os emprestimos " +
                         "| 3-Atualizar Devolução | 4-Deletar registros");
                 int escolha = scanner.nextInt();
@@ -147,6 +152,7 @@ public class Main {
 
                 switch (escolha){
                     case 1:
+                        //create emprestimo
                         System.out.println("---Digite as informações para o emprestimo ser registrado---");
 
                         emprestimo = formularioEmprestimo();
@@ -154,6 +160,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 2:
+                        //read emprestimo
                         System.out.println("---Listando todos os livros---");
                         List<Emprestimo> registros = emprestimoDAO.relatorioEmprestimos();
                         for(Emprestimo r : registros){
@@ -165,6 +172,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 3:
+                        //update emprestimo
                         System.out.println("---Atualizar registro---");
                         System.out.print("Digite o id do registro: ");
                         int id_registro = scanner.nextInt();
@@ -176,6 +184,7 @@ public class Main {
                         mensagemFinalizacao();
                         break;
                     case 4:
+                        //delete emprestimo
                         System.out.println("---Adicione o ID do registro que você quer deletar---");
                         System.out.print("id: " );
                         int id = scanner.nextInt();
@@ -206,7 +215,6 @@ public class Main {
         System.out.println("Data de nascimento (dd/mm/yyyy): ");
         String dataNascimento = scanner.nextLine();
 
-        //alterar formato da data
         Aluno aluno = new Aluno(nome,matricula, dataFormatada(dataNascimento));
 
         return aluno;

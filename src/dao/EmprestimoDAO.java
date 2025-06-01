@@ -26,15 +26,18 @@ public class EmprestimoDAO {
             preparedStatement.setDate(3, emprestimo.getDataDevolucao());
             preparedStatement.executeUpdate();
 
-            System.out.println("Emprestimo realizado com sucesso!");
-
             //Diminuir no estoque de livros a quantidade;
             LivroDAO daoLivros = new LivroDAO();
             Livro livro = daoLivros.pegarUmLivro(emprestimo.getId_livro());
-            int quantidadeAtual = livro.getQuantidade_estoque();
-            quantidadeAtual -= 1;
-            livro.setQuantidade_estoque(quantidadeAtual);
+            livro.setId(emprestimo.getId_livro());
+
+            int retiradaDoEstoque = livro.getQuantidade_estoque();
+            retiradaDoEstoque -= 1;
+
+            livro.setQuantidade_estoque(retiradaDoEstoque);
             daoLivros.atualizarQuantidade(livro);
+
+            System.out.println("Emprestimo realizado com sucesso!");
 
         } catch (SQLException error){
             error.printStackTrace();
