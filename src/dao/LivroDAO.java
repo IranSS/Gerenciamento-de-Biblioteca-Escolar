@@ -44,6 +44,7 @@ public class LivroDAO {
 
             while(resultSet.next()){
                 Livro livro = new Livro(
+                        resultSet.getInt("id_livro"),
                         resultSet.getString("titulo"),
                         resultSet.getNString("autor"),
                         resultSet.getInt("ano_publicacao"),

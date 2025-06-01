@@ -10,7 +10,7 @@ public class Aluno {
 
     public Aluno(){}
 
-    public Aluno(String nome, String matricula, Date dataNascimento, int id) {
+    public Aluno( int id, String nome, String matricula, Date dataNascimento) {
         this.nome = nome;
         this.matricula = matricula;
         this.data_nascimento = dataNascimento;

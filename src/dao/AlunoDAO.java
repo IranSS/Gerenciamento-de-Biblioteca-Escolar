@@ -43,6 +43,7 @@ public class AlunoDAO {
 
             while(resultSet.next()){
                 Aluno aluno = new Aluno(
+                        resultSet.getInt("id_aluno"),
                         resultSet.getString("nome_aluno"),
                         resultSet.getNString("matricula"),
                         resultSet.getDate("data_nascimento")

@@ -37,7 +37,7 @@ public class Main {
                         System.out.println("---Iniciando cadastro---");
                         Aluno aluno = formularioAluno();
                         alunoDAO.create(aluno);
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     case 2:
                         //Listar
@@ -49,7 +49,7 @@ public class Main {
                                     " - Matricula do aluno: " + a.getMatricula() +
                                     " - Data de nascimento: " + a.getData_nascimento());
                         }
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     case 3:
                         //atualizar
@@ -62,7 +62,7 @@ public class Main {
                         aluno.setId(id_update);
 
                         alunoDAO.update(aluno);
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     case 4:
                         //Deletar
@@ -70,7 +70,7 @@ public class Main {
                         System.out.print("id: " );
                         int id = scanner.nextInt();
                         alunoDAO.delete(id);
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     default:
                         break;
@@ -98,7 +98,7 @@ public class Main {
 
                         livro = new Livro(titulo, autor, ano, quantidade);
                         livroDAO.create(livro);
-
+                        mensagemFinalizacao();
                         break;
                     case 2:
                         //Listar
@@ -109,7 +109,7 @@ public class Main {
                                     " - Autor: " + l.getAutor() + " - Ano de publicação: " + l.getAno_publicacao()
                             + " - Quantidade: " + l.getQuantidade_estoque());
                         }
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     case 3:
                         System.out.println("---Digite o ID do item para atualizar o estoque---");
@@ -123,13 +123,14 @@ public class Main {
                         livro.setQuantidade_estoque(quantidadeAtualizada);
 
                         livroDAO.atualizarQuantidade(livro);
+                        mensagemFinalizacao();
                         break;
                     case 4:
                         System.out.println("---Adicione o ID do livro que você quer deletar---");
                         System.out.print("id: " );
                         int id = scanner.nextInt();
                         livroDAO.delete(id);
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     default:
                         break;
@@ -150,7 +151,7 @@ public class Main {
 
                         emprestimo = formularioEmprestimo();
                         emprestimoDAO.registrarEmprestimo(emprestimo);
-
+                        mensagemFinalizacao();
                         break;
                     case 2:
                         System.out.println("---Listando todos os livros---");
@@ -161,6 +162,7 @@ public class Main {
                                     " - Data do emprestimo: " + r.getDataEmprestimo() +
                                     " - Data da devolução: " + r.getDataDevolucao());
                         }
+                        mensagemFinalizacao();
                         break;
                     case 3:
                         System.out.println("---Atualizar registro---");
@@ -171,14 +173,14 @@ public class Main {
                         emprestimo.setId(id_registro);
 
                         emprestimoDAO.atualizarRegistroEmprestimo(emprestimo);
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     case 4:
                         System.out.println("---Adicione o ID do registro que você quer deletar---");
                         System.out.print("id: " );
                         int id = scanner.nextInt();
                         emprestimoDAO.deletarRegistroDeEmprestimo(id);
-                        System.out.println("---Voltando para o menu---");
+                        mensagemFinalizacao();
                         break;
                     default:
                         break;
@@ -229,6 +231,7 @@ public class Main {
         Date data_final = Date.valueOf(localData);
         return data_final;
     }
-//        LocalDate data = LocalDate.of(2025,05,29);
-//        Date dataDevolucao = Date.valueOf(data);
+    public static void mensagemFinalizacao(){
+        System.out.println("---Voltando para o menu---");
+    }
 }
