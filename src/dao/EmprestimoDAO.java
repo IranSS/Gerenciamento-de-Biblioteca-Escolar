@@ -85,7 +85,7 @@ public class EmprestimoDAO {
             preparedStatement.setInt(4, emprestimo.getId());
             preparedStatement.executeUpdate();
 
-            System.out.println("Registro de emprestimo atualizado com sucesso!");
+            System.out.println("Registro do emprestimo atualizado com sucesso!");
         } catch (SQLException error){
             error.printStackTrace();
         }

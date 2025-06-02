@@ -173,7 +173,7 @@ public class Main {
                         break;
                     case 3:
                         //update emprestimo
-                        System.out.println("---Atualizar registro---");
+                        System.out.println("---Atualizar registro de emprestimo---");
                         System.out.print("Digite o id do registro: ");
                         int id_registro = scanner.nextInt();
 
@@ -185,7 +185,7 @@ public class Main {
                         break;
                     case 4:
                         //delete emprestimo
-                        System.out.println("---Adicione o ID do registro que você quer deletar---");
+                        System.out.println("---Adicione o ID do registro de emprestimo que você quer deletar---");
                         System.out.print("id: " );
                         int id = scanner.nextInt();
                         emprestimoDAO.deletarRegistroDeEmprestimo(id);
