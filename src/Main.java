@@ -116,7 +116,7 @@ public class Main {
                     case 3:
                         //update livros
                         //Faz mais sentido atualizar somente o estoque, porém foi implementado o Update de todos os elementos
-                        System.out.println("---Digite o ID do item para atualizar o estoque---");
+                        System.out.println("---Digite o ID do item para atualizar no estoque---");
                         System.out.print("ID: ");
                         int id_item = scanner.nextInt();
                         System.out.print("Quantidade: ");
@@ -161,7 +161,7 @@ public class Main {
                         break;
                     case 2:
                         //read emprestimo
-                        System.out.println("---Listando todos os livros---");
+                        System.out.println("---Listando todos os emprestimos---");
                         List<Emprestimo> registros = emprestimoDAO.relatorioEmprestimos();
                         for(Emprestimo r : registros){
                             System.out.println("ID do Registro: " + r.getId() + " - ID do aluno: " +

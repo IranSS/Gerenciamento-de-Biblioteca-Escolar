@@ -100,7 +100,7 @@ public class EmprestimoDAO {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
 
-            System.out.println("Livro deletado com sucesso!");
+            System.out.println("Registro de emprestimo deletado com sucesso!");
         } catch (SQLException error){
             error.printStackTrace();
         }
