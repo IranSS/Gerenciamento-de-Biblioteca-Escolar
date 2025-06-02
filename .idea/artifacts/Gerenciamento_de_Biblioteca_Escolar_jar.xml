@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Gerenciamento-de-Biblioteca-Escolar:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Gerenciamento_de_Biblioteca_Escolar_jar</output-path>
+    <root id="archive" name="Gerenciamento-de-Biblioteca-Escolar.jar">
+      <element id="module-output" name="Gerenciamento-de-Biblioteca-Escolar" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/util/mysql-connector-j-9.2.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
