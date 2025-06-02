@@ -18,7 +18,7 @@ public class EmprestimoDAO {
         Livro livro = daoLivros.pegarUmLivro(emprestimo.getId_livro());
         livro.setId(emprestimo.getId_livro());
 
-        if(livro.getQuantidade_estoque() >= 12){
+        if(livro.getQuantidade_estoque() >= 1){
             //comando SQL para rodar
             String sql = "INSERT INTO emprestimos(id_aluno, id_livro, data_devolucao) VALUES (?,?,?)";
 
