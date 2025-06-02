@@ -14,33 +14,38 @@ public class EmprestimoDAO {
     //CREATE
     public void registrarEmprestimo(Emprestimo emprestimo){
 
-        //comando SQL para rodar
-        String sql = "INSERT INTO emprestimos(id_aluno, id_livro, data_devolucao) VALUES (?,?,?)";
+        LivroDAO daoLivros = new LivroDAO();
+        Livro livro = daoLivros.pegarUmLivro(emprestimo.getId_livro());
+        livro.setId(emprestimo.getId_livro());
 
-        //Fazer TryCatch para tratar o error do SQL
-        try(Connection connection = dataBaseConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        if(livro.getQuantidade_estoque() >= 12){
+            //comando SQL para rodar
+            String sql = "INSERT INTO emprestimos(id_aluno, id_livro, data_devolucao) VALUES (?,?,?)";
 
-            preparedStatement.setInt(1, emprestimo.getAluno());
-            preparedStatement.setInt(2, emprestimo.getId_livro());
-            preparedStatement.setDate(3, emprestimo.getDataDevolucao());
-            preparedStatement.executeUpdate();
+            //Fazer TryCatch para tratar o error do SQL
+            try(Connection connection = dataBaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 
-            //Diminuir no estoque de livros a quantidade;
-            LivroDAO daoLivros = new LivroDAO();
-            Livro livro = daoLivros.pegarUmLivro(emprestimo.getId_livro());
-            livro.setId(emprestimo.getId_livro());
+                preparedStatement.setInt(1, emprestimo.getAluno());
+                preparedStatement.setInt(2, emprestimo.getId_livro());
+                preparedStatement.setDate(3, emprestimo.getDataDevolucao());
+                preparedStatement.executeUpdate();
 
-            int retiradaDoEstoque = livro.getQuantidade_estoque();
-            retiradaDoEstoque -= 1;
+                //Diminuir no estoque de livros a quantidade;
+                int retiradaDoEstoque = livro.getQuantidade_estoque();
+                retiradaDoEstoque -= 1;
 
-            livro.setQuantidade_estoque(retiradaDoEstoque);
-            daoLivros.atualizarQuantidade(livro);
+                livro.setQuantidade_estoque(retiradaDoEstoque);
+                daoLivros.atualizarQuantidade(livro);
 
-            System.out.println("Emprestimo realizado com sucesso!");
+                System.out.println("Emprestimo realizado com sucesso!");
 
-        } catch (SQLException error){
-            error.printStackTrace();
+            } catch (SQLException error){
+                error.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("O estoque deste livro está vazio");
         }
     }
     //READ
