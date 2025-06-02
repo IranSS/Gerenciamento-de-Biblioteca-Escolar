@@ -60,4 +60,4 @@ O projeto é organizado em pacotes para melhor modularidade e separação de res
 ## Integrantes do trabalho
 Nome: Francisco Iranildo de Sousa Avelino - 2415577
 
-Nome: 
+Nome: Jorgirerison Leite Peixoto - 2415465
